@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Payment & Details Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            width: 100%;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        input[type="date"]{
+            margin-bottom:10px;
+        }
+        input[type="tel"]{
+            margin-bottom:10px;
+        }
+        dot{
+            float: left;
+        }
+        img{
+            width:100%;
+            height:2.5cm;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="img" src="/images/flat.jpeg" alt="">
+        <h2>Book Your Tour</h2>
+        
+        <form id="paymentForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Enter your phone number:</label>
+            <input type="tel" id="phone" name="phone" maxlength="10">
+            
+            <label for="tour">Select Tour</label>
+            <select id="tour" name="tour">
+                <option value="1500">1500</option>
+                <option value="2000">2000</option>
+                <option value="2500">2500</option>
+            </select>
+            
+            <label for="date">Tour Date</label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="participants">Number of Participants</label>
+            <select id="participants" name="participants">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            
+            <label for="comments">Additional Comments / Special Requests</label>
+            <textarea id="comments" name="comments" rows="4"></textarea>
+            
+            <input type="submit" value="Pay Now" class="rzp-button1">
+        </form>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+                    // Fetch form data
+                    const formData = new FormData(this);
+
+                // Get the selected package amount
+                const selectedPackageAmount = document.getElementById('tour').value;
+                let amount = parseInt(selectedPackageAmount); // Convert to number
+
+                // Ensure the minimum amount is 100 paise (1 INR)
+                amount = Math.max(amount, 100) * 100;
+
+            // Prepare data for Razorpay API
+            const options = {
+                key: 'Enter_your_razorpay_key', 
+                amount: amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                currency: 'INR',
+                name: 'Harshal khartade',
+                description: 'Tour Payment',
+                // image: '',
+                // handler: function(response) {
+                //     // Handle successful payment response
+                //     alert(response.razorpay_payment_id);
+                //     alert(response.razorpay_order_id);
+                //     alert(response.razorpay_signature);
+                    
+                //     // You can add additional processing here, like sending payment details to your server
+                // },
+                handler: function(response) {
+                    const paymentResponse = response.razorpay_payment_id; // Get the payment ID
+                    const orderId = response.razorpay_order_id; // Get the order ID
+                    const signature = response.razorpay_signature; // Get the signature
+                    // console.log('Payment Response:', response); // Log the complete response object
+
+                    // Handle successful payment response
+                    alert(`Payment ID: ${paymentResponse}`);
+                    // alert(`Order ID: ${orderId}`);
+                    // alert(`Signature: ${signature}`);
+                    
+                    // You can add additional processing here, like sending payment details to your server
+                },
+                prefill: {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    contact: formData.get('phone')
+                },
+                notes: {
+                    tour: formData.get('tour'),
+                    date: formData.get('date'),
+                    participants: formData.get('participants'),
+                    comments: formData.get('comments')
+                },
+                theme: {
+                    color: '#99cc33' 
+                }
+            };
+
+            // Open Razorpay Checkout form
+            const rzp1 = new Razorpay(options);
+            rzp1.open();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+
+
+body, h3, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Baloo Bhai 2', 'Plus Jakarta Sans', 'Roboto', sans-serif !important;
+    width: 100% !important;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container{
+    flex: 1;
+}
+
+/* Navbar styling */
+.navbar {
+    height: 5rem;
+}
+
+.fa-compass {
+    color: #fe424d !important;
+    font-size: 2rem !important;
+}
+
+
+.nav-link {
+    color: #222222 !important;
+}
+
+.f-info-links a {
+    text-decoration: none !important;
+    color: #222222 !important;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline !important;
+}
+
+/* Footer info section */
+.f-info {
+    display: flex;
+    background-color: #ebebeb;
+    height: 8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+    text-align: center;
+}
+
+.f-info-socials, .f-info-links, .f-info-brand {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-info-socials i {
+    font-size: 1.25rem;
+    margin-right: 1rem;
+}
+.footers{
+    margin-top: auto;
+}
+
+/* Cards styling */
+.listing-card{
+    border: none !important;
+}
+.card-img-top {
+    width: 100% !important;
+    max-height: 16rem !important; /* Set the maximum height as per your preference */
+    border-radius: 1rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+    margin-left: 1.2rem !important;
+    object-fit: cover !important;
+}
+
+.card img {
+    width: 90% !important;
+    height: auto !important; /* Automatically adjust height to maintain aspect ratio */
+    border-radius: 1.25rem !important;
+    /* border: none !important; */
+}
+
+.card-body {
+    padding-left: 1.25rem !important;
+    padding-top: 0 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.card-text {
+    text-align: left !important;
+}
+
+/* Listing link styling */
+.listing-link {
+    text-decoration: none !important;
+    color: #222222 !important;
+}
+
+.listing-link:hover {
+    color: #222222 !important;
+}
+.card-img-overlay {
+    opacity: 0; /* Set initial opacity to 0 */
+    transition: opacity 0.3s ease; /* Add a smooth transition effect */
+}
+
+.card-img-overlay .overlays-content:hover {
+    opacity: 0.8; /* Change opacity to 0.8 on hover */
+    background-color: red;
+}
+
+/* Hover effect on image */
+.card:hover .card-img-overlay {
+    opacity: 0.8 !important;
+    background-color: white !important;
+}
+
+/* Additional styling for the overlays */
+.card-img-overlay .overlays-content {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    /* transform: translate(-50%, -50%) !important; */
+    color: white !important;
+}
+.ad-btn,.edit-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+/* .show-img{
+    height: 30vh;
+} */
+
+.card-img-top .show-img{
+    margin-right: 1rem !important;
+    margin-top: 1.2rem !important;
+    
+}
+.btns{
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+}
+.edit-btn2{
+    /* width: 30px !important; */
+    height: 2.35rem !important;
+    width: 4.5rem !important;
+}
+
+/* no bootsrtap working for new listing so here it is manually applied */
+/* input:invalid,textarea:invalid {
+    border: 2px solid red;
+}
+
+input:valid,textarea:valid {
+    border: 2px solid green;
+}
+
+input:required::after,textarea:required::after {
+    content: "*";
+    color: red;
+    margin-left: 5px;
+}
+ */
+/* Style for invalid input */
+/* input:required:invalid:not(:placeholder-shown),
+textarea:required:invalid:not(:placeholder-shown) {
+  border: 2px solid red;
+} */
+
+/* Style for valid input */
+/* input:required:valid:not(:placeholder-shown),
+textarea:required:valid:not(:placeholder-shown) {
+  border: 2px solid green;
+} */
+
+/* Style for placeholder text */
+/* input:required:placeholder-shown,
+textarea:required:placeholder-shown {
+  border: 2px solid #ccc;
+} */
+
+/* Style for required indicator (optional) */
+/* input:required::after,
+textarea:required::after {
+  content: "*";
+  color: red;
+  margin-left: 5px;
+} */
+/* Style for invalid input */
+
+/* error .ejs css */
+/* .row-message{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center  !important;
+    align-items: center !important;
+    text-align: center !important;
+
+}
+.row-error-meassage{
+    margin: auto !important;
+    justify-content: center  !important;
+    align-items: center !important;
+    text-align: center !important;
+    
+} */
+
+.reviews-style{
+    display: flex !important;
+    flex-direction: column !important;
+}
+.review {
+    /* text-align: center !important; */
+    align-items: center !important;
+    justify-content: center !important;
+}
